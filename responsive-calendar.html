@@ -1,0 +1,51 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+<link rel="import" href="./bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="./bower_components/paper-button/paper-button.html">
+<link rel="import" href="./bower_components/paper-shadow/paper-shadow.html">
+<link rel="import" href="./bower_components/core-icons/core-icons.html">
+<link rel="import" href="./bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="./bower_components/core-selector/core-selector.html">
+
+<script src="./bower_components/moment/moment.js"></script>
+<script src="./bower_components/moment-range/lib/moment-range.js"></script>
+
+<!--
+
+  <paper-calendar></paper-calendar>
+tested on Chrome & Firefox 33
+-->
+
+<polymer-element name="responsive-calendar">
+  <template>
+    <link rel="stylesheet" href="responsive-calendar.css">
+      <div id="calendar" vertical layout center-justified>
+        <paper-shadow z="2"></paper-shadow>
+        <core-toolbar class="calendar-head">
+          <paper-icon-button icon="arrow-back" on-click="{{ prev }}"></paper-icon-button>
+          <paper-button flex class="header" label="{{ header }}" on-click="{{ nextView }}">
+            {{ header }}
+          </paper-button>
+          <paper-icon-button icon="arrow-forward" on-click="{{ next }}"></paper-icon-button>
+        </core-toolbar>
+        <core-selector valueattr="data-value" selected="{{ item }}" target="{{$.content}}" itemsSelector=".active"></core-selector>
+        <div id="content">
+          <!--horizontal layout wrap justified-->
+          <template id="days" repeat="{{ item in items }}">
+            <paper-button class="{{ type }} {{ item.cl }}" label="{{ item.label }}" data-value="{{ item.val }}" on-click="{{ setItem }}">
+              {{ item.label }}
+            </paper-button>
+          </template>
+        </div>
+        <paper-button simpleButton class="colored" label="Today" on-click="{{ ready }}">
+          Today
+        </paper-button>
+      </div>
+  </template>
+  <script src="responsive-calendar.js"></script>
+  <style shim-shadowdom>
+.button-content {
+  padding: 0;
+  margin: 0;
+}
+  </style>
+</polymer-element>

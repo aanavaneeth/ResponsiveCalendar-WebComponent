@@ -1,0 +1,82 @@
+:host {
+  display: block;
+}
+#calendar {
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 10px;
+  margin-left: 10px;
+  top: -10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.calendar-head {
+  background: #4285f4;
+  color: #fff;
+}
+#content {
+  margin-bottom: 10px;
+}
+.header {
+  text-align: center;
+}
+.days {
+  width: 13%;
+  /*margin-right: 8.5% !important;*/
+}
+@media (max-width: 400px){
+  .days {
+    /*width: 30px !important;*/
+  }
+  #calendar {
+   font-size: 12px;
+  }
+}
+
+@media (min-width: 770px){
+  .days {
+    /*width: 30px !important;*/
+  }
+  #calendar {
+    font-size: 25px;
+  }
+}
+
+.days.fade {
+  color: #c9c9c9;
+}
+.months {
+  width: 100px;
+}
+
+.years {
+  width: 60px;
+}
+.days.core-selected,
+.months.core-selected,
+.years.core-selected {
+  background-color: #c9c9c9;
+}
+
+paper-button.colored {
+  color: #4285f4;
+  fill: #4285f4;
+}
+
+paper-button[simpleButton].colored {
+  background: #4285f4;
+  color: #fff;
+}
+
+paper-button:not([simpleButton]){
+min-width: 2.1em;
+  margin: 0;
+}
+
+paper-button::shadow .button-content{
+  margin: 0;
+  padding: 0;
+}
