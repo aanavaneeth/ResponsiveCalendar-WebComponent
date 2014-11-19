@@ -16,3 +16,5 @@ Steps to launch demo:
 2.	Go to the project root, open command prompt and enter “bower install”
 
 3.	Then, load Demo.HTML (Should be loaded from a web server)
+
+You can also find the demo here: http://agasthyanavaneeth.github.io/ResponsiveCalendar-WebComponent/
