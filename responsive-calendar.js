@@ -32,6 +32,7 @@ Polymer({
     this.view = 'Days';
     this.canFireEvent = true;
     this.updateDate();
+    this.item  = this.day+ this.month+this.year;
   },
   observe: {
     date: 'updateNowDate',
@@ -41,42 +42,48 @@ Polymer({
     year: 'render',
     view: 'render'
   },
+
   prev: function() {
     this.now = this.now.clone().subtract(1, this.views[this.view].heading);
     this.updateDate();
   },
+
   next: function() {
     this.now = this.now.clone().add(1, this.views[this.view].heading);
     this.updateDate();
   },
+
   nextView: function() {
     var keys = Object.keys(this.views),
       view = keys[keys.indexOf(this.view) + 1];
     this.view = view || this.view;
     this.render();
   },
+
   prevView: function() {
     var keys = Object.keys(this.views),
       view = keys[keys.indexOf(this.view) - 1];
     this.view = view || this.view;
   },
+
   setItem: function(e, d, el) {
+    var currentView;
     if (el.className.indexOf('active') === -1) { return; }
-    var currentView = this.views[this.view].item;
+    currentView = this.views[this.view].item;
     if(currentView === "day"){
       this.canFireEvent = true;
     }
     this[currentView] = el.dataset.value;
     this.prevView();
+    this.item = this.day+ this.month+this.year;
   },
-
 
   render: function() {
     this.setNowDate();
-    this.item = this[this.views[this.view].item];
     this['set' + this.view]();
     this.header = this[this.views[this.view].heading];
   },
+
   canFireEvent: false,
 
   _updateNowDate: function() {
@@ -85,12 +92,14 @@ Polymer({
     this.now = now;
     this.updateDate();
   },
+
   updateInputDate: function() {
   if(this.canFireEvent) {
     this.canFireEvent = false;
     this.fire("date-selected", this.now);
   }
   },
+
   setNowDate: function() {
     var now = moment([this.day, this.month, this.year].join(' '), 'D MMMM YYYY');
     if (now.isValid()) {
@@ -98,7 +107,6 @@ Polymer({
     } else if (this.day > moment(this.month, 'MMMM').daysInMonth()) {
       this.day = moment(this.month, 'MMMM').daysInMonth();
     }
-
   },
 
   debounce: function(func, wait, immediate) {
@@ -113,12 +121,13 @@ Polymer({
       if (immediate && !timeout) func.apply(context, args);
     };
   },
+
   updateDate: function() {
     this.day = this.now.format('D');
     this.month = this.now.format('MMMM');
     this.year = this.now.format('YYYY');
-    this.item = this[this.views[this.view].item];
   },
+
   getDayNames: function() {
     var start = moment().day(0),
       end = moment().day(6),
@@ -134,6 +143,7 @@ Polymer({
       });
     return days;
   },
+
   setDays: function() {
     var start = this.now.clone().startOf('month').day(0),
       end = this.now.clone().endOf('month').day(6),
@@ -144,12 +154,13 @@ Polymer({
       .range(start, end)
       .by('days', function(moment) {
         items.push({
-          val: moment.format('D'),
+          val: moment.format('D')+moment.format('MMMM')+moment.format('YYYY'),
           label: moment.format('D'),
           cl: moment.month() === month ? 'active': 'fade'
         });
       });
   },
+
   setMonths: function() {
     var start = this.now.clone().startOf('year'),
       end = this.now.clone().endOf('year'),
@@ -165,6 +176,7 @@ Polymer({
         });
       });
   },
+
   setYears: function() {
     var start = this.now.clone().subtract(12, 'year'),
       end = this.now.clone().add(12, 'year'),
