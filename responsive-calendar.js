@@ -30,6 +30,7 @@ Polymer({
   ready: function() {
     this.now = moment();
     this.view = 'Days';
+    this.canFireEvent = true;
     this.updateDate();
   },
   observe: {
@@ -61,9 +62,12 @@ Polymer({
   },
   setItem: function(e, d, el) {
     if (el.className.indexOf('active') === -1) { return; }
-    this[this.views[this.view].item] = el.dataset.value;
+    var currentView = this.views[this.view].item;
+    if(currentView === "day"){
+      this.canFireEvent = true;
+    }
+    this[currentView] = el.dataset.value;
     this.prevView();
-    this.canFireEvent = true;
   },
 
 
@@ -83,8 +87,8 @@ Polymer({
   },
   updateInputDate: function() {
   if(this.canFireEvent) {
-    this.fire("date-selected", this.now);
     this.canFireEvent = false;
+    this.fire("date-selected", this.now);
   }
   },
   setNowDate: function() {
