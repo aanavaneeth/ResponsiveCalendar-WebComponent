@@ -27,11 +27,11 @@ tested on Chrome & Firefox 33
           </paper-button>
           <paper-icon-button icon="arrow-forward" on-click="{{ next }}"></paper-icon-button>
         </core-toolbar>
-        <core-selector valueattr="data-value" selected="{{ item }}" target="{{$.content}}" itemsSelector=".active"></core-selector>
+        <core-selector valueattr="data-value" selected="{{ item }}" target="{{$.content}}" itemsSelector=".active" selectedAttribute=""></core-selector>
         <div id="content">
           <!--horizontal layout wrap justified-->
           <template id="days" repeat="{{ item in items }}">
-            <paper-button class="{{ type }} {{ item.cl }}" label="{{ item.label }}" data-value="{{ item.val }}" on-click="{{ setItem }}">
+            <paper-button class="{{ type }} {{ item.cl }}" data-value="{{ item.val }}" on-click="{{ setItem }}">
               {{ item.label }}
             </paper-button>
           </template>
