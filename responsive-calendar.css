@@ -2,7 +2,7 @@
   display: block;
 }
 #calendar {
-  background-color: #eee;
+  background-color: #FAFAFA;
   border-radius: 6px;
   padding: 10px;
   margin-left: 10px;
@@ -14,7 +14,7 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .calendar-head {
-  background: #4285f4;
+  background: #3F51B5;
   color: #fff;
 }
 #content {
@@ -25,21 +25,14 @@
 }
 .days {
   width: 13%;
-  /*margin-right: 8.5% !important;*/
 }
 @media (max-width: 400px){
-  .days {
-    /*width: 30px !important;*/
-  }
   #calendar {
    font-size: 12px;
   }
 }
 
 @media (min-width: 770px){
-  .days {
-    /*width: 30px !important;*/
-  }
   #calendar {
     font-size: 25px;
   }
@@ -58,22 +51,27 @@
 .days.core-selected,
 .months.core-selected,
 .years.core-selected {
-  background-color: #c9c9c9;
+  /*background-color: #c9c9c9;*/
+  color: #F50057;
 }
 
 paper-button.colored {
-  color: #4285f4;
-  fill: #4285f4;
+  color: #3F51B5;
+  fill: #3F51B5;
 }
 
 paper-button[simpleButton].colored {
-  background: #4285f4;
+  background: #3F51B5;
   color: #fff;
 }
 
 paper-button:not([simpleButton]){
 min-width: 2.1em;
   margin: 0;
+
+}
+paper-button:not([simpleButton])::shadow #ripple {
+  color: #F50057;
 }
 
 paper-button::shadow .button-content{
