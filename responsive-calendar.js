@@ -44,13 +44,21 @@ Polymer({
   },
 
   prev: function() {
-    this.now = this.now.clone().subtract(1, this.views[this.view].heading);
-    this.updateDate();
+    // As of now, I don't find any other solution to make the button ripple animation smoother :(
+    var that = this;
+    setTimeout(function() {
+      that.now = that.now.clone().subtract(1, that.views[that.view].heading);
+      that.updateDate();
+    }, 400);
   },
 
   next: function() {
-    this.now = this.now.clone().add(1, this.views[this.view].heading);
-    this.updateDate();
+    // As of now, I don't find any other solution to make the button ripple animation smoother :(
+    var that = this;
+    setTimeout(function(){
+      that.now = that.now.clone().add(1, that.views[that.view].heading);
+      that.updateDate();
+    }, 400);
   },
 
   nextView: function() {
