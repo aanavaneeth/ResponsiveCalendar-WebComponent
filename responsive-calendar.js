@@ -25,7 +25,22 @@ Polymer({
         heading: 'years'
       }
     };
-    this.updateNowDate = this.debounce(this._updateNowDate, 1000);
+    this.updateNowDate = this.debounce(this._updateNowDate, 500);
+  },
+  // Utility method; More here: http://davidwalsh.name/function-debounce
+  debounce: function(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
   },
   ready: function() {
     this.now = moment();
@@ -46,6 +61,9 @@ Polymer({
   prev: function() {
     // As of now, I don't find any other solution to make the button ripple animation smoother :(
     var that = this;
+    this.$.content.style.visibility = "hidden";
+    this.$.loadingAnim.setAttribute("active", "");
+    this.$.loadingAnim.style.display = "block";
     setTimeout(function() {
       that.now = that.now.clone().subtract(1, that.views[that.view].heading);
       that.updateDate();
@@ -55,10 +73,13 @@ Polymer({
   next: function() {
     // As of now, I don't find any other solution to make the button ripple animation smoother :(
     var that = this;
+    this.$.content.style.visibility = "hidden";
+    this.$.loadingAnim.setAttribute("active", "");
+    this.$.loadingAnim.style.display = "block";
     setTimeout(function(){
       that.now = that.now.clone().add(1, that.views[that.view].heading);
       that.updateDate();
-    }, 400);
+    }, 300);
   },
 
   nextView: function() {
@@ -90,6 +111,9 @@ Polymer({
     this.setNowDate();
     this['set' + this.view]();
     this.header = this[this.views[this.view].heading];
+    this.$.content.style.visibility = "visible";
+    this.$.loadingAnim.removeAttribute("active");
+    this.$.loadingAnim.style.display = "none";
   },
 
   canFireEvent: false,
@@ -115,19 +139,6 @@ Polymer({
     } else if (this.day > moment(this.month, 'MMMM').daysInMonth()) {
       this.day = moment(this.month, 'MMMM').daysInMonth();
     }
-  },
-
-  debounce: function(func, wait, immediate) {
-    var timeout;
-    return function() {
-      var context = this, args = arguments;
-      clearTimeout(timeout);
-      timeout = setTimeout(function() {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      }, wait);
-      if (immediate && !timeout) func.apply(context, args);
-    };
   },
 
   updateDate: function() {
