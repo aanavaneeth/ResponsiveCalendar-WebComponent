@@ -5,6 +5,7 @@
 <link rel="import" href="./bower_components/core-icons/core-icons.html">
 <link rel="import" href="./bower_components/core-toolbar/core-toolbar.html">
 <link rel="import" href="./bower_components/core-selector/core-selector.html">
+<link rel="import" href="./bower_components/paper-spinner/paper-spinner.html">
 
 <script src="./bower_components/moment/moment.js"></script>
 <script src="./bower_components/moment-range/lib/moment-range.js"></script>
@@ -36,6 +37,7 @@ tested on Chrome & Firefox 33
             </paper-button>
           </template>
         </div>
+        <paper-spinner id="loadingAnim"></paper-spinner>
         <paper-button simpleButton class="colored" label="Today" on-click="{{ ready }}">
           Today
         </paper-button>
