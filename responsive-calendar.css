@@ -12,6 +12,7 @@
   font-weight: 200;
   line-height: 30px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
 }
 .calendar-head {
   background: #3F51B5;
@@ -55,7 +56,7 @@
   color: #F50057;
 }
 
-paper-button.colored { 
+paper-button.colored {
   color: #3F51B5;
   fill: #3F51B5;
 }
@@ -70,11 +71,18 @@ min-width: 2.1em;
   margin: 0;
 
 }
-paper-button:not([simpleButton])::shadow #ripple {
+#content paper-button::shadow #ripple {
   color: #F50057;
 }
 
 paper-button::shadow .button-content{
   margin: 0;
   padding: 0;
+}
+
+#loadingAnim{
+  position: absolute;
+  top: 40%;
+  left: 49.5%;
+  display: none;
 }
