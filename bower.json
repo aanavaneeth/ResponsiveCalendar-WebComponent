@@ -24,7 +24,7 @@
         "core-icons": "Polymer/core-icons#~0.5.1",
         "core-toolbar": "Polymer/core-toolbar#~0.5.1",
         "core-selector": "Polymer/core-selector#~0.5.1",
-        "core-spinner": "Polymer/core-spinner#~0.5.1",
+        "paper-spinner": "Polymer/paper-spinner#~0.5.1",
         "moment": "~2.8.0",
         "moment-range": "~1.0.2"
 

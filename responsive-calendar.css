@@ -6,13 +6,13 @@
   border-radius: 6px;
   padding: 10px;
   margin-left: 10px;
-  top: -10px;
   text-align: center;
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*position: relative;*/
 }
 .calendar-head {
   background: #3F51B5;
